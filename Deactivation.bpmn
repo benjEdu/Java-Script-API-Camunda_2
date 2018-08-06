@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="Definitions_0vqow36" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.16.2">
+  <bpmn:collaboration id="Collaboration_18qhbci">
+    <bpmn:participant id="Participant_0g4co57" name="P2P User Support" processRef="Process_1" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1" isExecutable="true">
+    <bpmn:task id="Task_0a7g40i" name="Choose one finished ER to be deactivated">
+      <bpmn:incoming>SequenceFlow_0ornl15</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1jof3x8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_02mjh3y" name="ER deactivated">
+      <bpmn:incoming>SequenceFlow_1jof3x8</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1whhqoh</bpmn:outgoing>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:task id="Task_0v7oy2k" name="Set ER to finish deactivated">
+      <bpmn:incoming>SequenceFlow_1whhqoh</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_18qaq5g</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="IntermediateThrowEvent_0phm31a" name="ER finished deactivated">
+      <bpmn:incoming>SequenceFlow_18qaq5g</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0ornl15" sourceRef="StartEvent_1" targetRef="Task_0a7g40i" />
+    <bpmn:sequenceFlow id="SequenceFlow_1jof3x8" sourceRef="Task_0a7g40i" targetRef="IntermediateThrowEvent_02mjh3y" />
+    <bpmn:sequenceFlow id="SequenceFlow_1whhqoh" sourceRef="IntermediateThrowEvent_02mjh3y" targetRef="Task_0v7oy2k" />
+    <bpmn:sequenceFlow id="SequenceFlow_18qaq5g" sourceRef="Task_0v7oy2k" targetRef="IntermediateThrowEvent_0phm31a" />
+    <bpmn:startEvent id="StartEvent_1" name="Deactivation needed for ER in status finished">
+      <bpmn:outgoing>SequenceFlow_0ornl15</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:textAnnotation id="TextAnnotation_0rzojyp">
+      <bpmn:text>next approval step: IT in progress</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0oikwv2" sourceRef="IntermediateThrowEvent_02mjh3y" targetRef="TextAnnotation_0rzojyp" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_18qhbci">
+      <bpmndi:BPMNShape id="Participant_0g4co57_di" bpmnElement="Participant_0g4co57">
+        <dc:Bounds x="291.5" y="162" width="663" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0rzojyp_di" bpmnElement="TextAnnotation_0rzojyp">
+        <dc:Bounds x="653.1579196217494" y="182" width="99.99999999999999" height="54.373522458628834" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="357" y="280" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="334" y="323" width="83" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0a7g40i_di" bpmnElement="Task_0a7g40i">
+        <dc:Bounds x="462" y="258" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IntermediateThrowEvent_02mjh3y_di" bpmnElement="IntermediateThrowEvent_02mjh3y">
+        <dc:Bounds x="624.1579196217494" y="280" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="605" y="323" width="75" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0v7oy2k_di" bpmnElement="Task_0v7oy2k">
+        <dc:Bounds x="729.3158392434989" y="258" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1peq36u_di" bpmnElement="IntermediateThrowEvent_0phm31a">
+        <dc:Bounds x="899" y="280" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="888" y="323" width="57" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0oikwv2_di" bpmnElement="Association_0oikwv2">
+        <di:waypoint x="652" y="283" />
+        <di:waypoint x="684" y="236" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ornl15_di" bpmnElement="SequenceFlow_0ornl15">
+        <di:waypoint x="393" y="298" />
+        <di:waypoint x="462" y="298" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1jof3x8_di" bpmnElement="SequenceFlow_1jof3x8">
+        <di:waypoint x="562" y="298" />
+        <di:waypoint x="624" y="298" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1whhqoh_di" bpmnElement="SequenceFlow_1whhqoh">
+        <di:waypoint x="660" y="298" />
+        <di:waypoint x="729" y="298" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_18qaq5g_di" bpmnElement="SequenceFlow_18qaq5g">
+        <di:waypoint x="829" y="298" />
+        <di:waypoint x="899" y="298" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
